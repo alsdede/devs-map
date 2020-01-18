@@ -5,24 +5,24 @@ module.exports = {
 
     async index(request,response){
         //console.log(request.query);
-        const { latitude, longitude, techs } = request.body;
+        const { latitude, longitude, techs } = request.query;
         //Buscar todos os devs raio 10kmm e filtro por tech
         const techsArray = parseStringAsArray(techs);
-
-        const devs = await Dev.ind({
+        console.log(techsArray)
+        const devs = await Dev.find({
             techs: {
                 $in: techsArray,
             },
-            locaion: {
+            location: {
                 $near: {
                     $geometry:{
                         type: 'Point',
-                        coordnates:[longitude, latitude],
+                        coordinates:[longitude, latitude],
                     },
                     $maxDistance: 10000,
                 },
             },
         });
-        return response.json({ devs: [] });
+        return response.json({ devs });
     }
 }

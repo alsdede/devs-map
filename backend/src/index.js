@@ -4,7 +4,7 @@ const cors = require('cors');
 const routes = require('./routes');
 
 const app = express();
-mongoose.connect('mongodb+srv://omnistack:admin@cluster0-myet2.mongodb.net/test?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://omnistack:admin@cluster0-myet2.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
